@@ -9,9 +9,9 @@ class PlainPokemonSchema(Schema):
 
 class PlainTrainerSchema(Schema):
     id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
+    name = fields.Str(required=False)
     username = fields.Str(required=True)
-    password = fields.Str(required=True, load_only=True)
+    password = fields.Str(required=True)
     pokemon = fields.List(fields.Nested(PlainPokemonSchema()), dump_only=True)
 
 class PokemonSchema(PlainPokemonSchema):

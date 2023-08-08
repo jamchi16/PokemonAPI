@@ -57,4 +57,9 @@ class PokemonList(MethodView):
             abort(500, message="An error occurred while inserting the item.")
 
         return pokemon
+
+    @jwt_required()
+    @blp.response(200, PokemonSchema(many=True))
+    def get(self):
+        return PokemonModel.query.all()
     

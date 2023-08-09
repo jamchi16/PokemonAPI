@@ -54,7 +54,7 @@ class TrainerLogin(MethodView):
 
         if trainer and pbkdf2_sha256.verify(trainer_data["password"], trainer.password):
             access_token = create_access_token(identity=trainer.id)
-            return{"access_token": access_token}
+            return{"access_token": access_token, "trainer_id": trainer.id}
         abort(401, message="Invalid Credentials.")
 
 @blp.route("/logout")

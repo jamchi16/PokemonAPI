@@ -49,7 +49,7 @@ class TrainerLogin(MethodView):
     @blp.arguments(TrainerSchema)
     def post(self, trainer_data):
         trainer = TrainerModel.query.filter(
-            TrainerModel.username == trainer_data["username"]
+            TrainerModel.username.ilike(trainer_data["username"])
         ).first()
 
         if trainer and pbkdf2_sha256.verify(trainer_data["password"], trainer.password):

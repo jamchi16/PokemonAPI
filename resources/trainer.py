@@ -35,7 +35,6 @@ class Trainer(MethodView):
         trainer = TrainerModel.query.get_or_404(trainer_id)
         return trainer
 
-    @jwt_required()
     def delete(self, trainer_id):
         trainer = TrainerModel.query.get_or_404(trainer_id)
         for pokemon in trainer.pokemon:
@@ -65,3 +64,10 @@ class TrainerLogout(MethodView):
         jti = get_jwt()["jti"]
         BLOCKLIST.add(jti)
         return {"message": "Successfully logged out."}
+
+@blp.route("/trainer")           
+class TrainerList(MethodView):
+    @blp.response(200, TrainerSchema(many=True))
+    def get(self)
+        return TrainerModel.query.all()
+    

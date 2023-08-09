@@ -44,7 +44,6 @@ class Pokemon(MethodView):
 
 @blp.route("/pokemon")
 class PokemonList(MethodView):
-    @jwt_required()
     @blp.arguments(PokemonSchema)
     @blp.response(201, PokemonSchema)
     def post(self, pokemon_data):

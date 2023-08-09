@@ -68,6 +68,6 @@ class TrainerLogout(MethodView):
 @blp.route("/trainer")           
 class TrainerList(MethodView):
     @blp.response(200, TrainerSchema(many=True))
-    def get(self)
+    def get(self):
         return TrainerModel.query.all()
     

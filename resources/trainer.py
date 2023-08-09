@@ -24,8 +24,9 @@ class TrainerRegister(MethodView):
         )
         db.session.add(trainer)
         db.session.commit()
+        trainer_id = trainer.id
 
-        return {"message": "Trainer created successfully."}, 201
+        return {"message": "Trainer created successfully.", "trainer_id": trainer_id}, 201
 
 @blp.route("/trainer/<int:trainer_id>")
 class Trainer(MethodView):
